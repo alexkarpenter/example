@@ -8,13 +8,26 @@ use SD\Type\IType;
 
 $statReq = \SD\Model\Entity\Composite::createFromArray([
     'provider' => new \SD\Type\Str('stat'),
-    'operation' => new \SD\Type\Str('sales')
+    'operation' => new \SD\Type\Str('statBuy'),
+    'params' => \SD\Model\Entity\Spec::createFromArray([
+        'date' => '21-04-2015',
+        'pcode' => 'PRCU'
+    ])
 ]);
 
-use SP\Mixin\EngineTool;
-class Example extends \SP\Gear\Web{
-    use SP\Mixin\EngineTool;
-}
+$statReq = \SD\Model\Entity\Composite::createFromArray([
+    'provider' => new \SD\Type\Str('stat'),
+    'operation' => new \SD\Type\Str('getCountSalesByDirection'),
+    'params' => \SD\Model\Entity\Spec::createFromArray([
+        'terminal' => 'U021',
+        'pcode' => 'EUNO',
+        'arrival' => 'LED',
+        'departure' => 'MOW',
+        'scode' => 'AIR'
+    ])
+]);
+//PKC:SEL
 
-$e = new Example();
-$e->collectStat($statReq);
+
+$resp = \SD\Service::getInstance($statReq)->run();
+var_dump($resp->response);
