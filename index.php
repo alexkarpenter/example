@@ -13,13 +13,13 @@ $request = \SD\Model\Entity\Composite::createFromArray(array(
     'type' => new \SD\Type\Str('tariffList'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
         'city_out_iata' => 'MOW',             //city_from
-        'city_in_iata' => 'BOJ', //KIV          city_to
+        'city_in_iata' => 'BOJ', //KIV BOJ      city_to
         'type' => 'ow', //ow rt                 tariff_type
-        'dateBack' => '25.05.2015', //25.05     date_from
-        //'dateTo' => '15.04.2015',           //date_to
-        'adt' => 0,
-        'chd' => 0,
-        'inf' => 0,
+        //'dateBack' => '20.07.2015', //25.05     date_from
+        'dateTo' => '22.07.2015',           //date_to
+        'adt' => 1,
+        'chd' => 1,
+        //'inf' => 0,
     ])
 ));
 
@@ -27,8 +27,10 @@ $request = \SD\Model\Entity\Composite::createFromArray(array(
     'provider' => new \SD\Type\Str('charters'),
     'type' => new \SD\Type\Str('tariff'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
-        'tarif_id' => '6523694',
-        'tarif_type' => 'ow',
+        'tarif_id' => '6523718',
+        'type' => 'ow',
+        'adt' => 1,
+        'chd' => 1,
     ])
 ));*/
 
