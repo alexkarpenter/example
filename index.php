@@ -13,26 +13,26 @@ $request = \SD\Model\Entity\Composite::createFromArray(array(
     'type' => new \SD\Type\Str('tariffList'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
         'city_out_iata' => 'MOW',             //city_from
-        'city_in_iata' => 'BOJ', //KIV BOJ      city_to
+        'city_in_iata' => 'BOJ', //KIV BOJ KSQ      city_to
         'type' => 'ow', //ow rt                 tariff_type
         //'dateBack' => '20.07.2015', //25.05     date_from
-        'dateTo' => '22.07.2015',           //date_to
+        'dateTo' => '20.06.2015',           //date_to
         'adt' => 1,
-        'chd' => 1,
+        'chd' => 0,
         //'inf' => 0,
     ])
 ));
 
-/*$request = \SD\Model\Entity\Composite::createFromArray(array(
+$request = \SD\Model\Entity\Composite::createFromArray(array(
     'provider' => new \SD\Type\Str('charters'),
     'type' => new \SD\Type\Str('tariff'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
-        'tarif_id' => '6523718',
+        'tariff_id' => '6685062',
         'type' => 'ow',
         'adt' => 1,
-        'chd' => 1,
+        'chd' => 0,
     ])
-));*/
+));
 
 $passengers = new \SD\Model\Collection('\SD\Model\Entity\Spec');
 
@@ -72,8 +72,8 @@ $passengers->append($pas2);
     'type' => new \SD\Type\Str('booking'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
         'passengers' => $passengers,
-        'tarif_id' => '4619214',
-        'tarif_type' => 'ow',
+        'recommendationId' => '7499601',
+        'type' => 'ow',
     ])
 ));*/
 
