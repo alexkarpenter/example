@@ -9,7 +9,7 @@ use SD\Type\IType;
 //phpinfo();die;
 
 $request = \SD\Model\Entity\Composite::createFromArray(array(
-    'provider' => new \SD\Type\Str('charters'),
+    'provider' => new \SD\Type\Str('sfa'),
     'type' => new \SD\Type\Str('tariffList'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
         'city_out_iata' => 'MOW',             //city_from
@@ -23,8 +23,8 @@ $request = \SD\Model\Entity\Composite::createFromArray(array(
     ])
 ));
 
-$request = \SD\Model\Entity\Composite::createFromArray(array(
-    'provider' => new \SD\Type\Str('charters'),
+/*$request = \SD\Model\Entity\Composite::createFromArray(array(
+    'provider' => new \SD\Type\Str('sfa'),
     'type' => new \SD\Type\Str('tariff'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
         'tariff_id' => '6685062',
@@ -32,7 +32,7 @@ $request = \SD\Model\Entity\Composite::createFromArray(array(
         'adt' => 1,
         'chd' => 0,
     ])
-));
+));*/
 
 $passengers = new \SD\Model\Collection('\SD\Model\Entity\Spec');
 
@@ -68,7 +68,7 @@ $passengers->append($pas1);
 $passengers->append($pas2);
 
 /*$request = \SD\Model\Entity\Composite::createFromArray(array(
-    'provider' => new \SD\Type\Str('charters'),
+    'provider' => new \SD\Type\Str('sfa'),
     'type' => new \SD\Type\Str('booking'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
         'passengers' => $passengers,
