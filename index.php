@@ -16,10 +16,10 @@ $request = \SD\Model\Entity\Composite::createFromArray(array(
         'city_in_iata' => 'BOJ', //KIV BOJ KSQ      city_to
         'type' => 'ow', //ow rt                 tariff_type
         //'dateBack' => '20.07.2015', //25.05     date_from
-        'dateTo' => '20.06.2015',           //date_to
+        'dateTo' => '21.09.2015',           //date_to
         'adt' => 1,
         'chd' => 0,
-        //'inf' => 0,
+        'inf' => 0,
     ])
 ));
 
@@ -65,26 +65,27 @@ $pas2 = \SD\Model\Entity\Spec::createFromClass(
     ));
 
 $passengers->append($pas1);
-$passengers->append($pas2);
+//$passengers->append($pas2);
 
-/*$request = \SD\Model\Entity\Composite::createFromArray(array(
+$request = \SD\Model\Entity\Composite::createFromArray(array(
     'provider' => new \SD\Type\Str('sfa'),
     'type' => new \SD\Type\Str('booking'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
         'passengers' => $passengers,
-        'recommendationId' => '7499601',
+        'recommendationId' => '12778052',
         'type' => 'ow',
     ])
-));*/
+));
 
 
 /*$request = \SD\Model\Entity\Composite::createFromArray(array(
-    'provider' => new \SD\Type\Str('charters'),
-    'type' => new \SD\Type\Str('сheckout'),
+    'provider' => new \SD\Type\Str('info'),
+    'type' => new \SD\Type\Str('order'),
+    'operation' => new \SD\Type\Str('getOrdersByProvider'),
     'params' => \SD\Model\Entity\Spec::createFromArray([
-        'book_number' => '090415-13807',
+        'provider' => 'Sfa',
+        'status_id' => 9
     ])
 ));*/
 
-$resp = \SD\Service::getInstance($request)->run();
-var_dump($resp->response);
+$res = \SD\Service::getInstance($request)->run();
