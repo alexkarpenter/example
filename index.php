@@ -33,7 +33,7 @@ $res = $provider->select()
             new \BL\Db\QueryBuilder\Sql\Predicate\Operator(
                 'agent_id',
                 \BL\Db\QueryBuilder\Sql\Predicate\Operator::EQUAL_TO,
-                3)
+                4)
         ]
     )
     //->limit(10) // todo убрать
@@ -41,9 +41,9 @@ $res = $provider->select()
     ->fetchAll();
 
 if ($res && count($res) > 0) {
-    echo 'Извлечено записей: '.count($res);
+    echo "Rows from User: ".count($res)."\n";
 } else {
-    die('Нет данных от User');
+    die('Empty result from User');
 }
 
 $strBuf = "Имя;Фамилия;Дата рождения;Город;Пол;Номер телефона;E-mail;EAN\n";
@@ -60,9 +60,10 @@ foreach ($res as $row) {
     $strBuf .= "\n";
 }
 
-$file = 'testfile.csv';
-$fp = fopen($file, "w");
+$file = 'test.csv';
+$fp = fopen("$file", 'w');
 fwrite($fp, $strBuf);
+fclose($fp);
 
 // установка соединения
 $conn_id = ftp_connect('ftp.euroset.ru', 21);
@@ -71,19 +72,20 @@ $conn_id = ftp_connect('ftp.euroset.ru', 21);
 $login_result = ftp_login($conn_id, 'bonline', 'aES5VRZoXfco');
 
 if ((!$conn_id) || (!$login_result)) {
-    die('Не удается соединиться по ftp');
+    die('Ftp connect problem');
 }
 
+ftp_pasv($conn_id, true);
+
 // попытка закачивания файла
-if (ftp_fput($conn_id, '.', $fp, FTP_ASCII)) {
-    echo "Файл $file успешно загружен\n";
+if (ftp_put($conn_id, $file, $file, FTP_ASCII)) {
+    echo "Successfully uploaded $file.";
 } else {
-    echo "При закачке $file произошла проблема\n";
+    echo "Error uploading $file on ftp.";
 }
 
 // закрываем соединение и дескриптор файла
 ftp_close($conn_id);
-fclose($fp);
 
 /*select "first_name", "last_name", "birth", 'city', "sex", "phone", "email", "kuza", "created"
 from tol."user"
